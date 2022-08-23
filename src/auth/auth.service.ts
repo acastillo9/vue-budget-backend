@@ -20,7 +20,7 @@ export class AuthService {
       // console.log(pass, hash);
       const userPassword = user.password;
       user.password = undefined;
-      return await bcrypt.compare(pass, userPassword);
+      return (await bcrypt.compare(pass, userPassword)) ? user : null;
     }
     return null;
   }
