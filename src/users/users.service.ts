@@ -8,8 +8,6 @@ export class UsersService {
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
 
   async findProfileByUsername(username: string): Promise<User> {
-    return this.userModel
-      .findOne({ username }, { username: 1, name: 1 })
-      .exec();
+    return this.userModel.findOne({ username }).select('username name').exec();
   }
 }
