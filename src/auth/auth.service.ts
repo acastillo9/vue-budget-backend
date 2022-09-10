@@ -33,6 +33,9 @@ export class AuthService {
   }
 
   private async findUserByUsername(username: string): Promise<User> {
-    return this.userModel.findOne({ username }).select('+password').exec();
+    return await this.userModel
+      .findOne({ username })
+      .select('+password')
+      .exec();
   }
 }

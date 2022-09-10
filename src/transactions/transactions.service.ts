@@ -36,7 +36,7 @@ export class TransactionsService {
   }
 
   async remove(userId: string, transactionId: string): Promise<void> {
-    this.transactionModel
+    await this.transactionModel
       .deleteOne({ _id: transactionId, user: userId })
       .exec();
   }
@@ -46,6 +46,6 @@ export class TransactionsService {
       { $match: { user: userId } },
       { $group: { _id: null, balance: { $sum: '$amount' } } },
     ]);
-    return balanceAggregation[0].balance;
+    return balanceAggregation[0]?.balance;
   }
 }

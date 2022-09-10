@@ -31,18 +31,18 @@ export class TransactionsController {
   @UseGuards(JwtAuthGuard)
   @Get()
   async findTransactions(@Request() req) {
-    return this.transactionsService.find(req.user._id);
+    return await this.transactionsService.find(req.user._id);
   }
 
   @UseGuards(JwtAuthGuard)
   @Delete(':id')
   async removeTransaction(@Request() req, @Param() params) {
-    return this.transactionsService.remove(req.user._id, params.id);
+    return await this.transactionsService.remove(req.user._id, params.id);
   }
 
   @UseGuards(JwtAuthGuard)
   @Get('balance')
   async getBalance(@Request() req) {
-    return this.transactionsService.getBalance(req.user._id);
+    return await this.transactionsService.getBalance(req.user._id);
   }
 }
