@@ -30,7 +30,7 @@ export class TransactionsService {
   }
 
   async find(userId: string): Promise<Transaction[]> {
-    return this.transactionModel
+    return await this.transactionModel
       .find({ user: userId }, { user: 0, __v: 0 })
       .exec();
   }
